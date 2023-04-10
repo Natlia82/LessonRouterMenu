@@ -3,17 +3,13 @@ import React from 'react';
 import { Routes, Route, NavLink, Navigate, useSearchParams } from "react-router-dom";
 
 function Menu() {
-  /*<nav class="menu">
-  <a class="menu__item" href="/">Главная</a>
-  <a class="menu__item" href="/drift">Дрифт-такси</a>
-  <a class="menu__item" href="/timeattack">Time Attack</a>
-  <a class="menu__item" href="/forza">Forza Karting</a>
-</nav>*/
-
-  return  <nav class="menu">
-              <NavLink class="menu__item" to="/">Главная</NavLink>
-              <NavLink class="menu__item" to="/recipe/new">Новый рецепт</NavLink>
-          </nav>;
+ 
+  return ( <nav className="menu">
+              <NavLink className={({ isActive }) => isActive ? "menu__item menu__item-active" : "menu__item" } to="/">Главная</NavLink>
+              <NavLink className={({ isActive }) => isActive ? "menu__item menu__item-active" : "menu__item" } to="/drift">Дрифт-такси</NavLink>
+              <NavLink className={({ isActive }) => isActive ? "menu__item menu__item-active" : "menu__item" } to="/timeattack">Time Attack</NavLink>
+              <NavLink className={({ isActive }) => isActive ? "menu__item menu__item-active" : "menu__item" } to="/forza">Forza Karting</NavLink>
+          </nav>);
 }
 
 function HomePage() {
@@ -88,16 +84,19 @@ function TimeAttackPage() {
 // <Menu />
 function App() {
   return (
-    <>
+    <div>
      
        <Menu />
+       <div className="page">
        <Routes>
-        
-           <Route path='/recipe/new' element={<DriftPage />} />
            <Route path='/' element={<HomePage />} />
-
+           <Route path='/drift' element={<DriftPage />} />
+           <Route path='/timeattack' element={<TimeAttackPage />} />
+           <Route path='/forza' element={<ForzaPage />} />
+           
        </Routes>
-    </>
+       </div>
+    </div>
   );
 }
 
